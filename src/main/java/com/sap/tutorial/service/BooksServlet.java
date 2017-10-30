@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,11 +57,23 @@ public class BooksServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		PrintWriter out = response.getWriter();
+
 		// get all the books 
 		
+		// using named query
 		TypedQuery<Book> allBooksQuery = em.createNamedQuery("AllBooks", Book.class);
 		List<Book> allBooks = allBooksQuery.getResultList();
-		PrintWriter out = response.getWriter();
+		
+		// using native query
+		/*Query allBooksNatvieQuery = em.createNativeQuery("select \"ISBN\", \"Title\", \"Language\", \"PublisherID\", \"PublishedDate\", \"NumOfPages\" from \"JPA_TEST\".\"jpa_test.model::books.Book\"", Book.class);
+		List<Book> allBooks = allBooksNatvieQuery.getResultList();*/
+
+		// using parameterized query
+		/*TypedQuery<Book> findBookByIdQuery = em.createNamedQuery("FindBookByISBN", Book.class);
+		findBookByIdQuery.setParameter("in_isbn", request.getParameter("isbn")); 
+		Book matchedBook = findBookByIdQuery.getSingleResult();*/
 		
 		Gson gson = new Gson();
 		List<String> jsonRes = new ArrayList<String>();
@@ -68,6 +81,8 @@ public class BooksServlet extends HttpServlet {
 		for (Book book: allBooks){
 			jsonRes.add(gson.toJson(book));
 		}
+		
+		/*jsonRes.add(gson.toJson(matchedBook));*/
 		
 		out.write(jsonRes.toString());
 		response.setContentType("application/json");

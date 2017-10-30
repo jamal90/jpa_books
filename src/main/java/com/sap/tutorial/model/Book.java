@@ -12,11 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.NamedQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.NamedQueries;
 
 @Entity
 @org.eclipse.persistence.annotations.Cache(type = NONE)
 @Table(name = "\"JPA_TEST\".\"jpa_test.model::books.Book\"")
-@NamedQuery(name = "AllBooks", query = "select p from Book p")
+@NamedQueries({ 
+	@NamedQuery(name = "AllBooks", query = "select p from Book p"), 
+	@NamedQuery(name = "FindBookByISBN", query = "select p from Book p where p.isbn = :in_isbn") 
+})
 public class Book implements Serializable {
 
 	private static final long serialVersionUID = 1L;
