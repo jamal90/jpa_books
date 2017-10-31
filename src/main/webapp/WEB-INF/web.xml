@@ -18,4 +18,24 @@
 		<servlet-name>BooksServlet</servlet-name>
 		<url-pattern>/books</url-pattern>
 	</servlet-mapping>
+	
+	<!-- odata servlet -->
+	<servlet>
+		<servlet-name>ODataServlet</servlet-name>
+		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>org.apache.olingo.odata2.core.rest.app.ODataApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>org.apache.olingo.odata2.service.factory</param-name>
+			<param-value>com.sap.tutorial.service.ODataServiceFactory</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ODataServlet</servlet-name>
+		<url-pattern>/Books.svc/*</url-pattern>
+	</servlet-mapping>
 </web-app>

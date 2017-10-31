@@ -1,7 +1,6 @@
 package com.sap.tutorial.model;
 
 import static javax.persistence.TemporalType.DATE;
-import static org.eclipse.persistence.annotations.CacheType.NONE;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,14 +8,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.NamedQuery;
-import javax.persistence.SqlResultSetMapping;
-import javax.persistence.NamedQueries;
 
 @Entity
-@org.eclipse.persistence.annotations.Cache(type = NONE)
 @Table(name = "\"JPA_TEST\".\"jpa_test.model::books.Book\"")
 @NamedQueries({ 
 	@NamedQuery(name = "AllBooks", query = "select p from Book p"), 
@@ -49,7 +46,7 @@ public class Book implements Serializable {
 	public Book() {
 	}
 
-	public String getISBN() {
+	public String getIsbn() {
 		return isbn;
 	}
 
@@ -61,7 +58,7 @@ public class Book implements Serializable {
 		return title;
 	}
 
-	public void setISBN(String param) {
+	public void setIsbn(String param) {
 		this.isbn = param;
 	}
 

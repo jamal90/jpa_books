@@ -5,8 +5,11 @@
 	<artifactId>jpa_books</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jpa_books Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+
+	<properties>
+		<odata.olingo.version>2.0.9</odata.olingo.version>
+	</properties>
+
 	<dependencies>
 		<!-- servlet -->
 		<dependency>
@@ -30,6 +33,43 @@
 			<version>2.8.1</version>
 		</dependency>
 
+		<!-- olingo core -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>2.7.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-core</artifactId>
+			<version>${odata.olingo.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-api</artifactId>
+			<version>${odata.olingo.version}</version>
+		</dependency>
+
+		<!-- jpa odata processors -->
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-jpa-processor-api</artifactId>
+			<version>${odata.olingo.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-jpa-processor-core</artifactId>
+			<version>${odata.olingo.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-jpa-processor-ref</artifactId>
+			<version>${odata.olingo.version}</version>
+		</dependency>
 
 		<!-- test dependencies -->
 		<dependency>
