@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>com.sap.tutorial.model.Book</entity-name>
+		<entity-name>com.sap.tutorial.model.BookAuthor</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>188</entity-height>
-		<entity-X-Coordinate>580</entity-X-Coordinate>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>820</entity-X-Coordinate>
+		<entity-Y-Coordinate>250</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.sap.tutorial.model.Publisher</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>208</entity-height>
+		<entity-X-Coordinate>343</entity-X-Coordinate>
+		<entity-Y-Coordinate>246</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.sap.tutorial.model.Author</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>288</entity-height>
+		<entity-X-Coordinate>80</entity-X-Coordinate>
+		<entity-Y-Coordinate>250</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.sap.tutorial.model.Book</entity-name>
+		<entity-width>191</entity-width>
+		<entity-height>246</entity-height>
+		<entity-X-Coordinate>530</entity-X-Coordinate>
+		<entity-Y-Coordinate>250</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.sap.tutorial.model.ContributionByAuthor</entity-name>
+		<entity-width>181</entity-width>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>1040</entity-X-Coordinate>
 		<entity-Y-Coordinate>250</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>

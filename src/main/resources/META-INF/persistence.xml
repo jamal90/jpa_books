@@ -9,6 +9,8 @@
 		<class>com.sap.tutorial.model.Book</class>
 		<class>com.sap.tutorial.model.Author</class>
 		<class>com.sap.tutorial.model.Publisher</class>
+		<class>com.sap.tutorial.model.BookAuthor</class>
+		<class>com.sap.tutorial.model.ContributionByAuthor</class>
 		
 		<properties>
 			<property name="eclipselink.ddl-generation" value="none" />

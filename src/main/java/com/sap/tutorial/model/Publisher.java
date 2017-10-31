@@ -27,7 +27,7 @@ public class Publisher implements Serializable {
 	@Column(name="\"Location.countryCode\"")
 	private String countryCode;
 
-	@Column(name="\"Location.number\"", insertable=false)
+	@Column(name="\"Location.number\"")
 	private int houseNumber;
 
 	@Column(name="\"Location.street\"")
