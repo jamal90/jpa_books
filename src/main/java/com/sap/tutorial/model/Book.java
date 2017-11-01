@@ -5,6 +5,7 @@ import static javax.persistence.TemporalType.DATE;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -49,11 +51,11 @@ public class Book implements Serializable {
 	private int publisherId;
 	
 	@OneToOne
-	@JoinColumn(referencedColumnName="\"PublisherID\"", name="\"PublisherID\"", updatable=false, insertable=false) // the "name" is the column name in the target table
+	@JoinColumn(name="\"PublisherID\"", updatable=false, insertable=false) // the "name" is the column name in the target table
 	private Publisher publisher; 
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(referencedColumnName="\"ISBN\"", name="\"BookID\"", updatable=false, insertable=true)
+	@JoinColumn(name="\"BookID\"", updatable=false, insertable=true)
 	private List<BookAuthor> bookAuthors; 
 	
 	public Book() {
@@ -123,6 +125,20 @@ public class Book implements Serializable {
 
 	public void setTitle(String param) {
 		this.title = param;
+	}
+	
+	@PrePersist
+	private void persist(){
+		// mock logic to generate the isbn13 value
+		Random rand = new Random();
+		long p1 = Math.round(rand.nextDouble() * 1000);
+		long p2 = Math.round(rand.nextDouble() * 10);
+		long p3 = Math.round(rand.nextDouble() * 10_000);
+		long p4 = Math.round(rand.nextDouble() * 10_000);
+		long p5 = Math.round(rand.nextDouble() * 10);
+		
+		String isbnVal = String.format("%d-%d-%d-%d-%d", p1, p2, p3, p4, p5);
+		this.isbn = isbnVal;
 	}
 	
 }

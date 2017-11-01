@@ -1,7 +1,9 @@
 package com.sap.tutorial.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,7 +30,15 @@ import javax.persistence.TemporalType;
 @org.eclipse.persistence.annotations.Cache
 public class Author implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	private static List<String> countryList = 	new ArrayList<>();	// sample list of countries - to be fetched from DB table 
+			
+	static {
+		countryList.add("US");
+		countryList.add("CA");
+		countryList.add("IN");
+		countryList.add("DE");
+	}
+	
 	@Id
 	@Column(name="\"AuthorID\"")
 	@GeneratedValue(generator="AuthorSequenceGen", strategy=GenerationType.SEQUENCE)
@@ -154,5 +165,14 @@ public class Author implements Serializable {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-
+	
+	@PrePersist
+	public void checkValidations(){
+		// check the country code is from the list of entities
+		if (!countryList.contains(this.countryCode)){
+			throw new RuntimeException("CountryCode Not valid");
+		}
+	}
+	
+	
 }
