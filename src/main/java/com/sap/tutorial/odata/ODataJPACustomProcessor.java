@@ -1,6 +1,7 @@
 package com.sap.tutorial.odata;
 
 import java.io.InputStream;
+import java.nio.file.attribute.UserPrincipalLookupService;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.sap.tutorial.model.Book;
+import com.sap.tutorial.util.UserInfo;
 
 public class ODataJPACustomProcessor extends ODataJPADefaultProcessor {
 
@@ -73,7 +75,9 @@ public class ODataJPACustomProcessor extends ODataJPADefaultProcessor {
 				Book jpaEntity = (Book) virtualJPAEntity.getJPAEntity();
 
 				jpaEntity.setCreatedAt(Timestamp.from(Instant.now()));
-				jpaEntity.setCreatedBy("I076097"); // TODO: get the user info
+				
+				UserInfo currentUser = UserInfo.getCurrentUser(this.oDataJPAContext);
+				jpaEntity.setCreatedBy(currentUser.getUserId()); 
 				jpaEntity.setLastUpdatedAt(null);
 				jpaEntity.setLastUpdatedBy(null);
 

@@ -19,6 +19,15 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- scp cloud sdk -->
+		<dependency>
+			<groupId>com.sap.cloud</groupId>
+			<artifactId>neo-java-web-api</artifactId>
+			<version>3.40.16</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 		<!-- jpa - implementation provider -->
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
@@ -72,13 +81,9 @@
 		</dependency>
 
 		<!-- logging -->
-		<!-- <dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-			<scope>provided</scope>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>log4j</groupId> <artifactId>log4j</artifactId> 
+			<version>1.2.17</version> <scope>provided</scope> </dependency> -->
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>

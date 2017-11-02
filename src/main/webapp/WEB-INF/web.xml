@@ -38,4 +38,21 @@
 		<servlet-name>ODataServlet</servlet-name>
 		<url-pattern>/Books.svc/*</url-pattern>
 	</servlet-mapping>
+	
+	
+		<login-config>
+		<auth-method>FORM</auth-method>
+	</login-config>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>OData Service</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		
+		<auth-constraint>
+			<role-name>Everyone</role-name> <!-- APP_USER -->
+		</auth-constraint>
+	</security-constraint>
+	
 </web-app>

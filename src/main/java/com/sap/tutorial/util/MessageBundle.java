@@ -36,8 +36,7 @@ public class MessageBundle {
 		try {
             text = rb.getString(key);
             if (params != null) {
-                MessageFormat mf = new MessageFormat(text, locale);
-                text = mf.format(params, new StringBuffer(), null).toString();
+                text = MessageFormat.format(text, params);
             }
         } catch (MissingResourceException e) {
             LOG.error("Message not found in the resource file");
