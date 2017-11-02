@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name="\"JPA_TEST\".\"jpa_test.model::books.Publisher\"")
 @NamedQuery(name="Publisher.findAll", query="SELECT p FROM Publisher p")
 @SequenceGenerator(sequenceName="\"JPA_TEST\".\"jpa_test.sequences::PublisherSequence\"", name = "PublisherSequenceGen", allocationSize=1)
+@Cacheable(false)
 
 public class Publisher implements Serializable {
 	private static final long serialVersionUID = 1L;

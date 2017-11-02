@@ -5,10 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 
 @Entity
 @Table(name="\"_SYS_BIC\".\"jpa_test.views/PagesByAuthorsInUS\"")
+@Cacheable(false)
 public class ContributionByAuthor implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -3,10 +3,12 @@ package com.sap.tutorial.model;
 import static javax.persistence.TemporalType.DATE;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,9 +21,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "\"JPA_TEST\".\"jpa_test.model::books.Book\"")
+@Cacheable(false)
 @NamedQueries({ 
 	@NamedQuery(name = "AllBooks", query = "select p from Book p"), 
 	@NamedQuery(name = "FindBookByISBN", query = "select p from Book p where p.isbn = :in_isbn") 
@@ -50,19 +54,39 @@ public class Book implements Serializable {
 	@Column(name="\"PublisherID\"")
 	private int publisherId;
 	
+	@Column(name="\"AdministrativeData.createdAt\"")
+	private Timestamp createdAt;
+
+	@Column(name="\"AdministrativeData.createdBy\"")
+	private String createdBy;
+
+	@Column(name="\"AdministrativeData.lastUpdatedAt\"")
+	private Timestamp lastUpdatedAt;
+
+	@Column(name="\"AdministrativeData.lastUpdatedBy\"")
+	private String lastUpdatedBy;
+
 	@OneToOne
 	@JoinColumn(name="\"PublisherID\"", updatable=false, insertable=false) // the "name" is the column name in the target table
-	private Publisher publisher; 
-	
+	private Publisher publisher;
+
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="\"BookID\"", updatable=false, insertable=true)
-	private List<BookAuthor> bookAuthors; 
-	
+	private List<BookAuthor> bookAuthors;
+
 	public Book() {
 	}
 
 	public List<BookAuthor> getBookAuthors() {
 		return bookAuthors;
+	}
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
 	public String getIsbn() {
@@ -73,6 +97,14 @@ public class Book implements Serializable {
 		return language;
 	}
 
+	public Timestamp getLastUpdatedAt() {
+		return lastUpdatedAt;
+	} 
+	
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
+	} 
+	
 	public int getNumOfPages() {
 		return numOfPages;
 	}
@@ -84,7 +116,7 @@ public class Book implements Serializable {
 	public Publisher getPublisher() {
 		return publisher;
 	}
-	
+
 	public int getPublisherId() {
 		return publisherId;
 	}
@@ -93,11 +125,35 @@ public class Book implements Serializable {
 		return title;
 	}
 
-
+	@PrePersist
+	private void persist(){
+		if (this.isbn == null || "".equals(this.isbn)){
+			// mock logic to generate the isbn13 value
+			Random rand = new Random();
+			long p1 = Math.round(rand.nextDouble() * 1000);
+			long p2 = Math.round(rand.nextDouble() * 10);
+			long p3 = Math.round(rand.nextDouble() * 10_000);
+			long p4 = Math.round(rand.nextDouble() * 10_000);
+			long p5 = Math.round(rand.nextDouble() * 10);
+			
+			String isbnVal = String.format("%d-%d-%d-%d-%d", p1, p2, p3, p4, p5);
+			this.isbn = isbnVal;
+		}
+	}
 
 	public void setBookAuthors(List<BookAuthor> bookAuthors) {
 		this.bookAuthors = bookAuthors;
 	}
+	
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+
 
 	public void setIsbn(String param) {
 		this.isbn = param;
@@ -105,6 +161,14 @@ public class Book implements Serializable {
 
 	public void setLanguage(String param) {
 		this.language = param;
+	}
+
+	public void setLastUpdatedAt(Timestamp lastUpdatedAt) {
+		this.lastUpdatedAt = lastUpdatedAt;
+	}
+
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
 	public void setNumOfPages(int param) {
@@ -122,23 +186,9 @@ public class Book implements Serializable {
 	public void setPublisherId(int param) {
 		this.publisherId = param;
 	}
-
+	
 	public void setTitle(String param) {
 		this.title = param;
-	}
-	
-	@PrePersist
-	private void persist(){
-		// mock logic to generate the isbn13 value
-		Random rand = new Random();
-		long p1 = Math.round(rand.nextDouble() * 1000);
-		long p2 = Math.round(rand.nextDouble() * 10);
-		long p3 = Math.round(rand.nextDouble() * 10_000);
-		long p4 = Math.round(rand.nextDouble() * 10_000);
-		long p5 = Math.round(rand.nextDouble() * 10);
-		
-		String isbnVal = String.format("%d-%d-%d-%d-%d", p1, p2, p3, p4, p5);
-		this.isbn = isbnVal;
 	}
 	
 }

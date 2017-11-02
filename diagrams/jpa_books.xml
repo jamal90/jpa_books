@@ -22,11 +22,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.sap.tutorial.model.ContributionByAuthor</entity-name>
-		<entity-width>181</entity-width>
-		<entity-height>148</entity-height>
-		<entity-X-Coordinate>1040</entity-X-Coordinate>
-		<entity-Y-Coordinate>250</entity-Y-Coordinate>
+		<entity-name>com.sap.tutorial.model.Author</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>288</entity-height>
+		<entity-X-Coordinate>140</entity-X-Coordinate>
+		<entity-Y-Coordinate>240</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -35,7 +35,7 @@
 	<entity>
 		<entity-name>com.sap.tutorial.model.Book</entity-name>
 		<entity-width>191</entity-width>
-		<entity-height>246</entity-height>
+		<entity-height>326</entity-height>
 		<entity-X-Coordinate>560</entity-X-Coordinate>
 		<entity-Y-Coordinate>240</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
@@ -44,11 +44,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.sap.tutorial.model.Author</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>288</entity-height>
-		<entity-X-Coordinate>140</entity-X-Coordinate>
-		<entity-Y-Coordinate>240</entity-Y-Coordinate>
+		<entity-name>com.sap.tutorial.model.ContributionByAuthor</entity-name>
+		<entity-width>181</entity-width>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>1040</entity-X-Coordinate>
+		<entity-Y-Coordinate>250</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="\"JPA_TEST\".\"jpa_test.model::books.Author\"")
+@Cacheable(false)
 @NamedQuery(name="Author.findAll", query="SELECT a FROM Author a")
 @SequenceGenerator(sequenceName="\"JPA_TEST\".\"jpa_test.sequences::AuthorSequence\"", name = "AuthorSequenceGen", allocationSize=1)
 

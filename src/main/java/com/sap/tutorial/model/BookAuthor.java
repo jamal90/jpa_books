@@ -2,6 +2,7 @@ package com.sap.tutorial.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -13,6 +14,7 @@ import com.sap.tutorial.model.Author;
 
 @Entity
 @Table(name = "\"JPA_TEST\".\"jpa_test.model::books.Book_Author\"")
+@Cacheable(false)
 public class BookAuthor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
