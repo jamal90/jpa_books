@@ -5,6 +5,7 @@ import java.nio.file.attribute.UserPrincipalLookupService;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.EntityManager;
@@ -12,7 +13,10 @@ import javax.persistence.EntityManager;
 import org.apache.olingo.odata2.api.edm.EdmEntitySet;
 import org.apache.olingo.odata2.api.edm.EdmEntityType;
 import org.apache.olingo.odata2.api.ep.entry.ODataEntry;
+import org.apache.olingo.odata2.api.exception.MessageReference;
+import org.apache.olingo.odata2.api.exception.ODataBadRequestException;
 import org.apache.olingo.odata2.api.exception.ODataException;
+import org.apache.olingo.odata2.api.exception.ODataNotImplementedException;
 import org.apache.olingo.odata2.api.processor.ODataResponse;
 import org.apache.olingo.odata2.api.uri.info.GetEntitySetUriInfo;
 import org.apache.olingo.odata2.api.uri.info.PostUriInfo;
@@ -68,6 +72,9 @@ public class ODataJPACustomProcessor extends ODataJPADefaultProcessor {
 			Book createdEntiy = bookJpaProcessor.createEntity(uriParserResultView, content, requestContentType, contentType, this.oDataJPAContext);
 			ODataResponse oDataResponse = responseBuilder.build(uriParserResultView, createdEntiy, contentType);
 			return oDataResponse;
+			
+		case "ContributionByAuthor":
+			throw new IllegalArgumentException("Not allowed to write to Calc View");
 		}
 
 		return super.createEntity(uriParserResultView, content, requestContentType, contentType);
