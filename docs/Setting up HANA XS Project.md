@@ -49,6 +49,12 @@ From the granted roles tab, hit "+" icon and search for developer. Add all roles
   'JPA_BOOKS',
   'SYSTEM');
   ```
+7. You can play around in the Web Workbench Catalog, and try to create entries into table, and retrieve them. And perform basic SQL CRUD operations. 
+
+Open the catalog page in Web Workbench
+![image](https://user-images.githubusercontent.com/15712474/32508154-6a90c292-c3b7-11e7-8067-d6d441e2ad78.png)
+
+![image](https://user-images.githubusercontent.com/15712474/32508129-5401f38e-c3b7-11e7-9344-511a1acb919d.png)
 
 
 
