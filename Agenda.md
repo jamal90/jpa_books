@@ -43,6 +43,7 @@
   - LifeCycle Events in JPA entties
   - Validation on JPA entities
   - Additional data to entity before persisting
+  - Securing OData Service
   
   
 ## Day 5
