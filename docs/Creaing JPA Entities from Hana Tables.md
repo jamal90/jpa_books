@@ -4,7 +4,8 @@ This document describes the steps to import the hana tables as JPA entities.
 
 1. Right click on the project, and the in the context menu, JPA Tools -> Create entities from table
 
-![image](https://user-images.githubusercontent.com/15712474/32521544-da86c3b0-c3e1-11e7-86fa-1989bf5e528c.png)
+![image](https://user-images.githubusercontent.com/15712474/32521963-68c7718c-c3e3-11e7-85cb-d564dfde3462.png)
+
 
 2. Click on the Add Connection button. 
 
