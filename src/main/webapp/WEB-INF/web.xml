@@ -16,7 +16,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BooksServlet</servlet-name>
-		<url-pattern>/books</url-pattern>
+		<url-pattern>/books/*</url-pattern>
 	</servlet-mapping>
 	
 	<!-- odata servlet -->
@@ -33,10 +33,21 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>BooksJdbcServlet</display-name>
+		<servlet-name>BooksJdbcServlet</servlet-name>
+		<servlet-class>com.sap.tutorial.service.BooksJdbcServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>ODataServlet</servlet-name>
 		<url-pattern>/Books.svc/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BooksJdbcServlet</servlet-name>
+		<url-pattern>/BooksJdbcServlet</url-pattern>
 	</servlet-mapping>
 	
 	

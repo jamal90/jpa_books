@@ -23,6 +23,7 @@ import org.apache.olingo.odata2.jpa.processor.core.access.data.JPAEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sap.tutorial.jpaprocessor.BookJPAProcessor;
 import com.sap.tutorial.model.Book;
 import com.sap.tutorial.util.UserInfo;
 
@@ -30,7 +31,8 @@ public class ODataJPACustomProcessor extends ODataJPADefaultProcessor {
 
 	private static final AtomicInteger READ_COUNT = new AtomicInteger(0);
 	private static final Logger LOG = LoggerFactory.getLogger(ODataJPACustomProcessor.class);
-
+	private static final BookJPAProcessor bookJpaProcessor = new BookJPAProcessor();
+	
 	public ODataJPACustomProcessor(ODataJPAContext oDataJPAContext) {
 		super(oDataJPAContext);
 	}
@@ -63,31 +65,9 @@ public class ODataJPACustomProcessor extends ODataJPADefaultProcessor {
 
 		switch (oDataEntityType.getName()) {
 		case "Book":
-			// implement the logic to add the administrative data
-			if (content != null) {
-				final JPAEntity virtualJPAEntity = new JPAEntity(oDataEntityType, oDataEntitySet, oDataJPAContext);
-
-				final ODataEntityParser oDataEntityParser = new ODataEntityParser(oDataJPAContext);
-				final ODataEntry oDataEntry = oDataEntityParser.parseEntry(oDataEntitySet, content, requestContentType,
-						false);
-
-				virtualJPAEntity.create(oDataEntry);
-				Book jpaEntity = (Book) virtualJPAEntity.getJPAEntity();
-
-				jpaEntity.setCreatedAt(Timestamp.from(Instant.now()));
-				
-				UserInfo currentUser = UserInfo.getCurrentUser(this.oDataJPAContext);
-				jpaEntity.setCreatedBy(currentUser.getUserId()); 
-				jpaEntity.setLastUpdatedAt(null);
-				jpaEntity.setLastUpdatedBy(null);
-
-				final EntityManager em = oDataJPAContext.getEntityManager();
-				em.getTransaction().begin();
-				em.persist(jpaEntity);
-				em.getTransaction().commit();
-				ODataResponse oDataResponse = responseBuilder.build(uriParserResultView, jpaEntity, contentType);
-				return oDataResponse;
-			}
+			Book createdEntiy = bookJpaProcessor.createEntity(uriParserResultView, content, requestContentType, contentType, this.oDataJPAContext);
+			ODataResponse oDataResponse = responseBuilder.build(uriParserResultView, createdEntiy, contentType);
+			return oDataResponse;
 		}
 
 		return super.createEntity(uriParserResultView, content, requestContentType, contentType);
