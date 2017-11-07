@@ -44,9 +44,11 @@ From the granted roles tab, hit "+" icon and search for developer. Add all roles
 
 6. From SQL Console, execute the following command to grant the SYSTEM user with the privileges to access the schema created. 
 
+  ```sql
   call _SYS_REPO.GRANT_SCHEMA_PRIVILEGE_ON_ACTIVATED_CONTENT('select, create any, insert, delete, update, execute, alter, drop',
-     'JPA_BOOKS',
-     'SYSTEM');
+  'JPA_BOOKS',
+  'SYSTEM');
+  ```
 
 
 
