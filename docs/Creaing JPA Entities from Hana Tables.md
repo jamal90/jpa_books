@@ -30,7 +30,7 @@ The ngdbc driver can be found at either in the HANA studio (if you have it insta
 
 6. In the properties tab, enter the DriverClass Property. You can search for this, and select the class "com.sap.db.jdbc.Driver"
 
-![image](https://user-images.githubusercontent.com/15712474/32522110-0153405c-c3e4-11e7-9858-72ea29d85930.png)
+![image](https://user-images.githubusercontent.com/15712474/32561990-9571e026-c47b-11e7-9a1f-bda4e9a10086.png)
 
 
 7. Enter the DB credentials and save. 
