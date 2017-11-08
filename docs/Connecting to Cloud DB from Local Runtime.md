@@ -50,4 +50,5 @@ Note: This didn't work due to some proxy settings inside your corporate network.
 
     ```
 
+Finally you can start the server, and the local java web application will connect to the DB in cloud. 
 
