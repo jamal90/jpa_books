@@ -60,8 +60,11 @@
 ## Day 5
   - Implement Custom OData Processor
     - Preprocess, and post process the request
+    - Override DefaultJPA processor methods
   - Logging
   - Working with message bundles
   - Maven Multi module setup
+  - HDB Roles (Create and assigning to Technical User)
+  - Deployment Unit Creation
   - Best Practices for JPA development
     
