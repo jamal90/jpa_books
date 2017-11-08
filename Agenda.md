@@ -26,12 +26,10 @@
     - CRUD Operations
     - Setting up DataSource in cloud
     - JPA & JDBC (Compare & Contrast)
-  
   - JPQL(Java Persistence Query Language) 
     - NamedQueries
     - NativeQueries
     - Typed Queries
-  
   - Setting up Data Source Binding in Cloud 
   
 ## Day 3
