@@ -11,22 +11,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.sap.tutorial.model.Publisher</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>208</entity-height>
-		<entity-X-Coordinate>840</entity-X-Coordinate>
-		<entity-Y-Coordinate>220</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>com.sap.tutorial.model.Author</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>288</entity-height>
-		<entity-X-Coordinate>140</entity-X-Coordinate>
-		<entity-Y-Coordinate>240</entity-Y-Coordinate>
+		<entity-name>com.sap.tutorial.model.ContributionByAuthor</entity-name>
+		<entity-width>181</entity-width>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>1040</entity-X-Coordinate>
+		<entity-Y-Coordinate>250</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -44,11 +33,22 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.sap.tutorial.model.ContributionByAuthor</entity-name>
-		<entity-width>181</entity-width>
-		<entity-height>148</entity-height>
-		<entity-X-Coordinate>1040</entity-X-Coordinate>
-		<entity-Y-Coordinate>250</entity-Y-Coordinate>
+		<entity-name>com.sap.tutorial.model.Author</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>288</entity-height>
+		<entity-X-Coordinate>140</entity-X-Coordinate>
+		<entity-Y-Coordinate>240</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.sap.tutorial.model.Publisher</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>208</entity-height>
+		<entity-X-Coordinate>305</entity-X-Coordinate>
+		<entity-Y-Coordinate>500</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

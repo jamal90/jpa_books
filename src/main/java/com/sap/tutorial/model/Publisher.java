@@ -3,6 +3,8 @@ package com.sap.tutorial.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.sap.tutorial.listeners.CountryValidationListener;
+
 
 /**
  * The persistent class for the "jpa_test.model::books.Publisher" database table.
@@ -13,7 +15,7 @@ import javax.persistence.*;
 @NamedQuery(name="Publisher.findAll", query="SELECT p FROM Publisher p")
 @SequenceGenerator(sequenceName="\"JPA_TEST\".\"jpa_test.sequences::PublisherSequence\"", name = "PublisherSequenceGen", allocationSize=1)
 @Cacheable(false)
-
+@EntityListeners(CountryValidationListener.class)
 public class Publisher implements Serializable {
 	private static final long serialVersionUID = 1L;
 

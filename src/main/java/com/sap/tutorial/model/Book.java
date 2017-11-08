@@ -12,6 +12,7 @@ import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
@@ -66,11 +67,11 @@ public class Book implements Serializable {
 	@Column(name="\"AdministrativeData.lastUpdatedBy\"")
 	private String lastUpdatedBy;
 
-	@OneToOne
-	@JoinColumn(name="\"PublisherID\"", updatable=false, insertable=false) // the "name" is the column name in the target table
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="\"PublisherID\"", updatable=false, insertable=false) 
 	private Publisher publisher;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL) // the "name" is the column name in the target table
 	@JoinColumn(name="\"BookID\"", updatable=false, insertable=true)
 	private List<BookAuthor> bookAuthors;
 

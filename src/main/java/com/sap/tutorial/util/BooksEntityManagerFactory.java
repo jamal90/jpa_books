@@ -2,7 +2,6 @@ package com.sap.tutorial.util;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceUnit;
 
 public class BooksEntityManagerFactory {
 

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -169,6 +170,7 @@ public class Author implements Serializable {
 	}
 	
 	@PrePersist
+	@PreUpdate
 	public void checkValidations(){
 		// check the country code is from the list of entities
 		if (!countryList.contains(this.countryCode)){
