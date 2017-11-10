@@ -55,4 +55,57 @@
    When overriding from **ODataJPADefaultProcessor** it gives the flexibility to only override required methods. 
    
 
-2. 
+2. Override the method **createCustomODataProcessor** of the class **ODataJPAServiceFactory**. This allows to pass the previously redefined JPA processor to the JPA Service Factory. 
+
+
+    ```java
+    package com.sap.tutorial.odata;
+
+    import org.apache.olingo.odata2.api.processor.ODataSingleProcessor;
+    import org.apache.olingo.odata2.jpa.processor.api.ODataJPAContext;
+    import org.apache.olingo.odata2.jpa.processor.api.ODataJPAServiceFactory;
+
+    public abstract class CustomODataJPAServiceFactory extends ODataJPAServiceFactory {
+
+        @Override
+        public ODataSingleProcessor createCustomODataProcessor(ODataJPAContext oDataJPAContext) {
+            return new ODataJPACustomProcessor(oDataJPAContext);
+        }
+
+    }
+
+    ```
+
+3. Now in the already existing **BooksODataJPAServiceFactory** implementation, repalce the super class from **ODataJAPServiceFactory** to the newly defined **CustomODataJPAServiceFactory**
+
+    ```java
+    package com.sap.tutorial.service;
+
+    import javax.persistence.EntityManagerFactory;
+
+    import org.apache.olingo.odata2.jpa.processor.api.ODataJPAContext;
+    import org.apache.olingo.odata2.jpa.processor.api.ODataJPAServiceFactory;
+    import org.apache.olingo.odata2.jpa.processor.api.exception.ODataJPARuntimeException;
+
+    import com.sap.tutorial.util.BooksJPAEntityManagerFactoryProvider;
+
+    public class BooksODataJPAServiceFactory extends CustomODataJPAServiceFactory {
+
+        private static final String PUNIT = "jpa_books";
+
+        @Override
+        public ODataJPAContext initializeODataJPAContext() throws ODataJPARuntimeException {
+            ODataJPAContext oDataJPAContext2 = this.getODataJPAContext();
+
+            // get the entity manager factory
+            EntityManagerFactory emf = BooksJPAEntityManagerFactoryProvider.getEMF(PUNIT);
+            oDataJPAContext2.setEntityManagerFactory(emf);
+            oDataJPAContext2.setPersistenceUnitName(PUNIT);
+
+            return oDataJPAContext2;
+        }
+
+    }
+
+    ```
+
