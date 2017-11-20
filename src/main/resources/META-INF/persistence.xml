@@ -5,7 +5,7 @@
 	<persistence-unit name="jpa_books" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<non-jta-data-source>java:comp/env/jdbc/DefaultDB</non-jta-data-source>
-		
+		<!-- <mapping-file>META-INF/eventlisteners.xml</mapping-file> -->
 		<class>com.sap.tutorial.model.Book</class>
 		<class>com.sap.tutorial.model.Author</class>
 		<class>com.sap.tutorial.model.BookAuthor</class>

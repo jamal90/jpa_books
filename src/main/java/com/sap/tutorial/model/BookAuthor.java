@@ -7,13 +7,17 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.sap.tutorial.model.Author;
 
 @Entity
 @Table(name = "\"JPA_TEST\".\"jpa_test.model::books.Book_Author\"")
+@IdClass(BookAuthorKey.class)
 @Cacheable(false)
 public class BookAuthor implements Serializable {
 
@@ -22,20 +26,46 @@ public class BookAuthor implements Serializable {
 	public BookAuthor() {
 	}
 
-	@EmbeddedId
-	private BookAuthorKey key;
+	@Id
+	@Column(name="\"BookID\"")
+	private String isbn;
 	
+	@Id
+	@Column(name = "\"AuthorID\"")
+	int authorId;
+	
+	@ManyToOne
+	@JoinColumn(name = "\"BookID\"", referencedColumnName="\"ISBN\"", insertable=false, updatable=false)
+	private Book book;
+	
+	
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public int getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+
 	@OneToOne
 	@JoinColumn(name="\"AuthorID\"", insertable=false, updatable=false)
 	private Author author;
-
-	public BookAuthorKey getKey() {
-		return key;
-	}
-
-	public void setKey(BookAuthorKey key) {
-		this.key = key;
-	}
 
 	public Author getAuthor() {
 	    return author;
@@ -46,7 +76,7 @@ public class BookAuthor implements Serializable {
 	}
 }
 
-@Embeddable
+/*@Embeddable
 class BookAuthorKey {
 
 	@Column(name = "\"BookID\"")
@@ -71,4 +101,4 @@ class BookAuthorKey {
 		this.authorId = param;
 	}
 	
-}
+}*/

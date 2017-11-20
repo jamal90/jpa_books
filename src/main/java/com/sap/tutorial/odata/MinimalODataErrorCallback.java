@@ -20,7 +20,7 @@ public class MinimalODataErrorCallback implements ODataErrorCallback {
 	@Override
 	public ODataResponse handleError(ODataErrorContext context) throws ODataApplicationException {
 		
-		String corrId = "C" + new Random().nextLong() + "R"; // to use GUID identifying the logs uniquely
+		String corrId = "CR-" + new Random().nextInt(Integer.MAX_VALUE); // to use GUID identifying the logs uniquely
 		LOG.error(context.getException().getClass().getName() + ":" + "Correlation ID - " + corrId + " -- " + context.getMessage());
 		
 		Exception ex = context.getException();

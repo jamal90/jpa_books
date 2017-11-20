@@ -10,7 +10,12 @@ public class BooksEntityManagerFactory {
 		if (emf == null){
 			synchronized (BooksEntityManagerFactory.class) {
 				if (emf == null){
-					emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+					try{
+						emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
 				}
 			}
 		}

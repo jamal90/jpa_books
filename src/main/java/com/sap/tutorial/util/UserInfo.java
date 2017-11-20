@@ -1,6 +1,7 @@
 package com.sap.tutorial.util;
 
 import java.util.Arrays;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,12 +28,15 @@ public class UserInfo {
 
 	private String lastName;
 	
-	private UserInfo(String userId, String email, String firstName, String lastName) {
+	private Set<String> roles; 
+	
+	private UserInfo(String userId, String email, String firstName, String lastName, Set<String> roles) {
 		super();
 		this.userId = userId;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.roles = roles; 
 	}
 	
 	public static UserInfo getCurrentUser(ODataJPAContext oDataJPAContext) {
@@ -46,9 +50,10 @@ public class UserInfo {
 
 				// Read the currently logged in user from the user storage
 				User user = users.getUser(request.getUserPrincipal().getName());
-
+				
 				//	Assigned groups: user.getAttributeValues("groups")
-				return new UserInfo(request.getUserPrincipal().getName(), user.getAttribute("email"), user.getAttribute("firstname"), user.getAttribute("lastname"));
+				return new UserInfo(request.getUserPrincipal().getName(), user.getAttribute("email"), 
+						user.getAttribute("firstname"), user.getAttribute("lastname"), user.getRoles());
 				
 			} catch (PersistenceException | UnsupportedUserAttributeException e) { // broad exception
 				LOG.error("Error in fetching user context", e);
@@ -73,6 +78,14 @@ public class UserInfo {
 
 	public String getUserId() {
 		return userId;
+	}
+	
+	public boolean isRoleAssigned(String roleName){
+		
+		if (roles.contains(roleName))
+			return true; 
+		
+		return false;
 	}
 
 }

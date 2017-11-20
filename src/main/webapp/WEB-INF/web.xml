@@ -45,6 +45,7 @@
 		<servlet-name>ODataServlet</servlet-name>
 		<url-pattern>/Books.svc/*</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>BooksJdbcServlet</servlet-name>
 		<url-pattern>/BooksJdbcServlet</url-pattern>
@@ -58,12 +59,25 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>OData Service</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>/Books.svc/*</url-pattern>
 		</web-resource-collection>
 
 		<auth-constraint>
-			<role-name>Everyone</role-name> <!-- APP_USER -->
+			<role-name>Everyone</role-name> 
 		</auth-constraint>
 	</security-constraint>
 
+	
+	<!-- CSRF Protection -->
+	<filter>
+		<filter-name>CSRFRestFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.RestCsrfPreventionFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>CSRFRestFilter</filter-name>
+		<!--  modifying REST APIs-->
+		<url-pattern>/Books.svc/*</url-pattern>
+	</filter-mapping>
+	
 </web-app>

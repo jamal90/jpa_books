@@ -4,6 +4,9 @@ import static javax.persistence.TemporalType.DATE;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -52,8 +55,8 @@ public class Book implements Serializable {
 	@Column(name="\"PublishedDate\"")
 	private Date publishedDate;
 
-	@Column(name="\"PublisherID\"")
-	private int publisherId;
+//	@Column(name="\"PublisherID\"")
+//	private int publisherId;
 	
 	@Column(name="\"AdministrativeData.createdAt\"")
 	private Timestamp createdAt;
@@ -68,17 +71,19 @@ public class Book implements Serializable {
 	private String lastUpdatedBy;
 
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="\"PublisherID\"", updatable=false, insertable=false) 
+	@JoinColumn(name="\"PublisherID\"", updatable=true, insertable=true) 
 	private Publisher publisher;
 
-	@OneToMany(cascade=CascadeType.ALL) // the "name" is the column name in the target table
-	@JoinColumn(name="\"BookID\"", updatable=false, insertable=true)
+	@OneToMany(mappedBy="book", cascade=CascadeType.ALL) // the "name" is the column name in the target table
+	@JoinColumn(name="\"BookID\"", updatable=true, insertable=true)
 	private List<BookAuthor> bookAuthors;
 
 	public Book() {
 	}
 
 	public List<BookAuthor> getBookAuthors() {
+		if (bookAuthors == null)
+			return new ArrayList<>();
 		return bookAuthors;
 	}
 
@@ -118,28 +123,12 @@ public class Book implements Serializable {
 		return publisher;
 	}
 
-	public int getPublisherId() {
-		return publisherId;
-	}
+//	public int getPublisherId() {
+//		return publisherId;
+//	}
 
 	public String getTitle() {
 		return title;
-	}
-
-	@PrePersist
-	private void persist(){
-		if (this.isbn == null || "".equals(this.isbn)){
-			// mock logic to generate the isbn13 value
-			Random rand = new Random();
-			long p1 = Math.round(rand.nextDouble() * 1000);
-			long p2 = Math.round(rand.nextDouble() * 10);
-			long p3 = Math.round(rand.nextDouble() * 10_000);
-			long p4 = Math.round(rand.nextDouble() * 10_000);
-			long p5 = Math.round(rand.nextDouble() * 10);
-			
-			String isbnVal = String.format("%d-%d-%d-%d-%d", p1, p2, p3, p4, p5);
-			this.isbn = isbnVal;
-		}
 	}
 
 	public void setBookAuthors(List<BookAuthor> bookAuthors) {
@@ -184,12 +173,29 @@ public class Book implements Serializable {
 		this.publisher = publisher;
 	}
 
-	public void setPublisherId(int param) {
-		this.publisherId = param;
-	}
+//	public void setPublisherId(int param) {
+//		this.publisherId = param;
+//	}
 	
 	public void setTitle(String param) {
 		this.title = param;
+	}
+	
+	
+	@PrePersist
+	private void persist(){
+		if (this.isbn == null || "".equals(this.isbn)){
+			// mock logic to generate the isbn13 value
+			Random rand = new Random();
+			long p1 = Math.round(rand.nextDouble() * 1000);
+			long p2 = Math.round(rand.nextDouble() * 10);
+			long p3 = Math.round(rand.nextDouble() * 10_000);
+			long p4 = Math.round(rand.nextDouble() * 10_000);
+			long p5 = Math.round(rand.nextDouble() * 10);
+			
+			String isbnVal = String.format("%d-%d-%d-%d-%d", p1, p2, p3, p4, p5);
+			this.isbn = isbnVal;
+		}
 	}
 	
 }
