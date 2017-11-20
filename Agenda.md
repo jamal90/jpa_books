@@ -11,16 +11,25 @@
   - HANA Development (Setup basic entities for Java App)
     - Design HDBDD (CDS) entities
     - User Defined Structures
+    - Roles to access generated artifacts
     - CDS Views
   
 ## Day 2
-  - Java Persistence API (JPA) Introduction
-  - Configuring Persistence XML
-  - Maven Setup for JPA
-  - Building JPA entities (uisng JPA Diagram Editor)
-  - Accessing JPA entities from Servlet (EntityManager)
-  - JPQL(Java Persistence Query Language) - Using NamedQueries, NativeQueries
-  - Building Response in Servlet from JPA entities
+  - Maven - In Detail
+  - Java Persistence API (JPA) 
+    - Introduction - Object Relation Mapping (ORM)
+    - Maven Setup for JPA
+    - Converting to JPA Project
+    - Configuring Persistence XML
+    - Building JPA entities (uisng JPA Diagram Editor)
+  - Accessing JPA Entities using Entity Manager
+    - CRUD Operations
+    - Setting up DataSource in cloud
+    - JPA & JDBC (Compare & Contrast)
+  - JPQL(Java Persistence Query Language) 
+    - NamedQueries
+    - NativeQueries
+    - Typed Queries
   - Setting up Data Source Binding in Cloud 
   
 ## Day 3
@@ -35,22 +44,25 @@
     - Define SequenceGenerator in JPA
     
 ## Day 4
-  - Using Calculation View in JPA
-  - Associations between the JPA entities
+  - Composite Keys in JPA Entity
+  - Relationships between the JPA entities
     - Navigation Properties in EDM entities
     - $expand functionality
     - Deep Insert
-  - LifeCycle Events in JPA entties
-  - Validation on JPA entities
-  - Additional data to entity before persisting
+  - LifeCycle of JPA entties
+    - Validation on JPA entities
+    - Additional data to entity before persisting
+  - Using Calculation View in JPA
   - Securing OData Service
-  
   
 ## Day 5
   - Implement Custom OData Processor
     - Preprocess, and post process the request
+    - Override DefaultJPA processor methods
   - Logging
   - Working with message bundles
   - Maven Multi module setup
+  - HDB Roles (Create and assigning to Technical User)
+  - Deployment Unit Creation
   - Best Practices for JPA development
     
