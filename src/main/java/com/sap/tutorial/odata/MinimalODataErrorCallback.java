@@ -24,7 +24,7 @@ public class MinimalODataErrorCallback implements ODataErrorCallback {
 		LOG.error(context.getException().getClass().getName() + ":" + "Correlation ID - " + corrId + " -- " + context.getMessage());
 		
 		Exception ex = context.getException();
-		if (ex instanceof PersistenceException){
+		if (ex instanceof RuntimeException){
 			context.setMessage(MessageBundle.getInstance().getLocalizedText("INTERNAL_ERROR", corrId));
 //			context.setMessage("An internal error occured with persisting the records. Check logs with Correlation ID - " + corrId); // TODO: read message from i18n and then apply localization
 		}

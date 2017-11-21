@@ -1,6 +1,7 @@
 package com.sap.tutorial.odata;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.olingo.odata2.api.edm.EdmEntitySet;
@@ -38,13 +39,35 @@ public class ODataJPACustomProcessor extends ODataJPADefaultProcessor {
 		long start = System.currentTimeMillis();
 		
 		// process - calling default provider
-		ODataResponse oDataResponse = super.readEntitySet(uriParserResultView, contentType);
+		ODataResponse oDataResponse  = processsWithDefaultUserFilter(uriParserResultView, contentType);
+//		ODataResponse oDataResponse = super.readEntitySet(uriParserResultView, contentType);    // DEFAULT 
 		
 		// post-process
 		long duration = System.currentTimeMillis() - start;
 		LOG.info("Finished read access number '" + readCount + "' after '" + duration + "'ms.");
 
 		return oDataResponse;
+	}
+
+	private ODataResponse processsWithDefaultUserFilter(GetEntitySetUriInfo uriParserResultView, String contentType) throws ODataException {
+		uriParserResultView.getFilter();
+		ODataResponse odataResp = null; 
+		
+		String entityName = uriParserResultView.getTargetEntitySet().getEntityType().getName();
+		switch(entityName){
+			case "Book":
+				Object whereClause  = "";
+				if (uriParserResultView.getFilter() != null)
+					whereClause = uriParserResultView.getFilter().accept(new JDBCFilterExpressionVisitor(uriParserResultView.getTargetEntitySet().getEntityType()));
+				
+				List<Object> jpaEntities = bookJpaProcessor.readEntitySet(whereClause, oDataJPAContext);
+				odataResp =  responseBuilder.build(uriParserResultView, jpaEntities, contentType);
+				break;
+			default:
+				odataResp = super.readEntitySet(uriParserResultView, contentType);
+		}
+		
+		return odataResp; 
 	}
 
 	@Override

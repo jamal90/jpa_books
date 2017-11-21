@@ -1,6 +1,5 @@
 package com.sap.tutorial.util;
 
-import java.util.Arrays;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
